@@ -14,17 +14,17 @@
 </head>
 <body>
         <!-- Navbar -->
-        <nav class="bg-black border-gray-800 relative z-50">
-            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-8">
+        <nav class="bg-black border-gray-800 relative z-50" id="navbar">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-8" id="navbar-content">
                 <!-- Logo -->
-                <a href="https://midnightspeedstars.com" class="flex items-center">
+                <a href="https://midnightspeedstars.com" class="flex items-center" id="navbar-logo">
                     <img src="images/logo.svg" 
-                    class="h-12 w-auto md:h-16 lg:h-20 transition-transform duration-300 hover:scale-105" 
-                    alt="Midnight Speedstars Logo" oncontextmenu="return false;" /> <!-- Prevent right-click -->
+                        class="h-12 w-auto md:h-16 lg:h-20 transition-transform duration-300 hover:scale-105" 
+                        alt="Midnight Speedstars Logo" oncontextmenu="return false;" /> <!-- Prevent right-click -->
                 </a>
         
                 <!-- Mobile Menu Button -->
-                <div class="flex items-center md:order-3 space-x-5 rtl:space-x-reverse">
+                <div class="flex items-center md:order-3 space-x-5 rtl:space-x-reverse" id="navbar-buttons">
                     <!-- Currency Dropdown -->
                     <div class="relative hidden md:block">
                         <button id="currency-dropdown-button" data-dropdown-toggle="currency-dropdown" type="button" 
@@ -40,7 +40,7 @@
                     </div>
         
                     <!-- Shopping Cart -->
-                    <button type="button" class="text-white hover:text-red-500 transition-colors duration-300">
+                    <button type="button" class="text-white hover:text-red-500 transition-colors duration-300" id="cart-button">
                         <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
                         </svg>
@@ -58,7 +58,7 @@
         
                 <!-- Main Navigation -->
                 <div class="hidden w-full md:block md:w-auto md:order-2" id="navbar-dropdown">
-                    <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-700 rounded-lg bg-black md:space-x-10 md:flex-row md:mt-0 md:border-0">
+                    <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-700 rounded-lg md:space-x-10 md:flex-row md:mt-0 md:border-0">
                         <!-- Home Link -->
                         <li class="relative group">
                             <a href="https://midnightspeedstars.com" class="block py-2 px-3 text-white md:p-0 text-2xl hover:text-red-500">
@@ -69,8 +69,8 @@
         
                         <!-- Shop Link -->
                         <li class="relative group">
-                            <a href="https://midnightspeedstars.com/shop" class="block py-2 px-3 text-white md:p-0 text-2xl hover:text-red-500">
-                                Shop
+                            <a href="https://midnightspeedstars.com/collections" class="block py-2 px-3 text-white md:p-0 text-2xl hover:text-red-500">
+                                Collections
                             </a>
                             <div class="absolute bottom-0 left-0 w-full h-[2px] bg-red-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
                         </li>
@@ -93,7 +93,107 @@
                     </ul>
                 </div>
             </div>
-        </nav>        
+        </nav>
+        
+        
+        <script>
+            // JavaScript to handle scroll event
+            const navbar = document.getElementById('navbar');
+            const navbarContent = document.getElementById('navbar-content');
+            const navbarLogo = document.getElementById('navbar-logo');
+            const navbarButtons = document.getElementById('navbar-buttons');
+        
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) { // After scrolling down 50px
+                    navbar.classList.add('scrolled');
+                    navbarContent.classList.add('scrolled');
+                    navbarLogo.classList.add('scrolled');
+                    navbarButtons.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                    navbarContent.classList.remove('scrolled');
+                    navbarLogo.classList.remove('scrolled');
+                    navbarButtons.classList.remove('scrolled');
+                }
+            });
+        </script>
+        
+        <style>
+        /* Navbar Styles */
+        #navbar {
+            transition: all 0.3s ease;
+        }
+
+        #navbar.scrolled {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: 50;
+            background-color: rgba(0, 0, 0, 0.8);  /* Semi-transparent background */
+            padding: 0.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        #navbar-content {
+            transition: all 0.3s ease;
+        }
+
+        #navbar-content.scrolled {
+            max-width: 100% !important;
+            padding: 0.5rem 2rem;
+            justify-content: center;
+        }
+
+        #navbar-logo {
+            transition: transform 0.3s ease;
+        }
+
+        #navbar-logo.scrolled {
+            transform: scale(0.8);
+        }
+
+        #navbar-buttons {
+            transition: all 0.3s ease;
+            display: flex; /* Ensures proper alignment of buttons */
+            justify-content: flex-end; /* Keeps the cart on the right */
+        }
+
+        #navbar-buttons.scrolled {
+            position: absolute;
+            left: 0;
+            right: 0;
+            justify-content: flex-end;
+            margin-right: 0.5rem; /* Move the cart even closer to the left */
+        }
+
+        #navbar-buttons a {
+            background-color: transparent; /* Remove any unwanted background */
+        }
+
+        #currency-dropdown {
+            z-index: 1000; /* Ensure it is above other content */
+        }
+
+        @media (max-width: 768px) {
+            #navbar-logo.scrolled {
+                transform: scale(0.6);
+            }
+
+            #navbar-buttons.scrolled {
+                position: absolute;
+                left: 0;
+                right: 0;
+                justify-content: flex-end; /* Ensures cart stays on the right even in mobile view */
+                margin-right: 1rem; /* Move the cart slightly to the left */
+            }
+        }
+
+
+
+        </style>
+                
         
         
 
@@ -106,76 +206,76 @@
             </video>
         </section>
 
-                <!-- Categories Grid Section -->
-                <section class="max-w-screen-xl mx-auto my-16 px-4">
-                    <!-- Grid container -->
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                        <!-- Category Item Template -->
-                        <!-- Best Selling -->
-                        <div class="relative group overflow-hidden shadow-lg aspect-[210/297]"> 
-                            <img src="images/grid/1.png" alt="Best Selling" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                                <span class="text-white text-xl font-bold">BEST SELLING</span>
-                            </div>
-                        </div>
-                        
-                        <!-- Hoodies -->
-                        <div class="relative group overflow-hidden shadow-lg aspect-[210/297]">
-                            <img src="images/grid/2.png" alt="Hoodies" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                                <span class="text-white text-xl font-bold">HOODIES</span>
-                            </div>
-                        </div>
-        
-                        <!-- T-Shirts -->
-                        <div class="relative group overflow-hidden shadow-lg aspect-[210/297]">
-                            <img src="images/grid/3.png" alt="T-Shirts" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                                <span class="text-white text-xl font-bold">T-SHIRTS</span>
-                            </div>
-                        </div>
-        
-                        <!-- Caps & Hats -->
-                        <div class="relative group overflow-hidden shadow-lg aspect-[210/297]">
-                            <img src="images/grid/4.png" alt="Caps & Hats" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                                <span class="text-white text-xl font-bold">CAPS & HATS</span>
-                            </div>
-                        </div>
-        
-                        <!-- Lanyards -->
-                        <div class="relative group overflow-hidden shadow-lg aspect-[210/297]">
-                            <img src="images/grid/5.png" alt="Lanyards" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                                <span class="text-white text-xl font-bold">LANYARDS</span>
-                            </div>
-                        </div>
-        
-                        <!-- Decals & Slap Stickers -->
-                        <div class="relative group overflow-hidden shadow-lg aspect-[210/297]">
-                            <img src="images/grid/6.png" alt="Decals & Slap Stickers" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-center">
-                                <span class="text-white text-xl font-bold">DECALS <br> SLAP STICKERS</span>
-                            </div>
-                        </div>
-        
-                        <!-- Banner Vinyls -->
-                        <div class="relative group overflow-hidden shadow-lg aspect-[210/297]">
-                            <img src="images/grid/7.png" alt="Banner Vinyls" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                                <span class="text-white text-xl font-bold">BANNER VINYLS</span>
-                            </div>
-                        </div>
-        
-                        <!-- Sun-Strips -->
-                        <div class="relative group overflow-hidden shadow-lg aspect-[210/297]">
-                            <img src="images/grid/8.png" alt="Sun-Strips" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
-                            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                                <span class="text-white text-xl font-bold">SUN-STRIPS</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+<!-- Categories Grid Section -->
+<section class="max-w-screen-xl mx-auto my-16 px-4">
+    <!-- Grid container -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <!-- Best Selling -->
+        <a href="https://midnightspeedstars.com/collections/best-selling" class="relative group overflow-hidden shadow-lg aspect-[210/297]">
+            <img src="images/grid/1.png" alt="Best Selling" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <span class="text-white text-xl font-bold">BEST SELLING</span>
+            </div>
+        </a>
+
+        <!-- Hoodies -->
+        <a href="https://midnightspeedstars.com/collections/hoodies" class="relative group overflow-hidden shadow-lg aspect-[210/297]">
+            <img src="images/grid/2.png" alt="Hoodies" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <span class="text-white text-xl font-bold">HOODIES</span>
+            </div>
+        </a>
+
+        <!-- T-Shirts -->
+        <a href="https://midnightspeedstars.com/collections/t-shirts" class="relative group overflow-hidden shadow-lg aspect-[210/297]">
+            <img src="images/grid/3.png" alt="T-Shirts" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <span class="text-white text-xl font-bold">T-SHIRTS</span>
+            </div>
+        </a>
+
+        <!-- Caps & Hats -->
+        <a href="https://midnightspeedstars.com/collections/caps-n-hats" class="relative group overflow-hidden shadow-lg aspect-[210/297]">
+            <img src="images/grid/4.png" alt="Caps & Hats" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <span class="text-white text-xl font-bold">CAPS & HATS</span>
+            </div>
+        </a>
+
+        <!-- Lanyards -->
+        <a href="https://midnightspeedstars.com/collections/lanyards" class="relative group overflow-hidden shadow-lg aspect-[210/297]">
+            <img src="images/grid/5.png" alt="Lanyards" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <span class="text-white text-xl font-bold">LANYARDS</span>
+            </div>
+        </a>
+
+        <!-- Decals & Slap Stickers -->
+        <a href="https://midnightspeedstars.com/collections/decals" class="relative group overflow-hidden shadow-lg aspect-[210/297]">
+            <img src="images/grid/6.png" alt="Decals & Slap Stickers" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-center">
+                <span class="text-white text-xl font-bold">DECALS <br> SLAP STICKERS</span>
+            </div>
+        </a>
+
+        <!-- Banner Vinyls -->
+        <a href="https://midnightspeedstars.com/collections/vinyls" class="relative group overflow-hidden shadow-lg aspect-[210/297]">
+            <img src="images/grid/7.png" alt="Banner Vinyls" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <span class="text-white text-xl font-bold">BANNER VINYLS</span>
+            </div>
+        </a>
+
+        <!-- Sun-Strips -->
+        <a href="https://midnightspeedstars.com/collections/sun-strips" class="relative group overflow-hidden shadow-lg aspect-[210/297]">
+            <img src="images/grid/8.png" alt="Sun-Strips" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+            <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                <span class="text-white text-xl font-bold">SUN-STRIPS</span>
+            </div>
+        </a>
+    </div>
+</section>
+
         
         
         
